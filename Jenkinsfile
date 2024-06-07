@@ -2,6 +2,12 @@ pipeline {
     agent {
         label 'principal'
     }
+    environment {
+        URL = 'https://dcsas-backoffice.konexinnovation.com/'
+        USUARIO = '14321990'
+        CONTRASENNA = 'M4n1z4l3s$'
+        TIPO_DOCUMENTO = 'Cédula de ciudadanía'
+    }
     stages {
         stage('Checkout') {
             steps {
@@ -20,12 +26,20 @@ pipeline {
                 }
             }
         }
+        stage('Print Env Vars') {
+            steps {
+                bat 'echo URL=%URL%'
+                bat 'echo USUARIO=%USUARIO%'
+                bat 'echo CONTRASENNA=%CONTRASENNA%'
+                bat 'echo TIPO_DOCUMENTO=%TIPO_DOCUMENTO%'
+            }
+        }
         stage('Test') {
             steps {
                 dir('Multiempresa') {
-                    bat """
+                    bat '''
                     gradlew.bat clean test --tests "co.com.konex.certification.login.backoffice.runners.gestiodistribuidor.FiltrosGestDistRunner"
-                    """
+                    '''
                 }
             }
             post {
