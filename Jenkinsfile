@@ -20,19 +20,19 @@ pipeline {
                 }
             }
         }
-        stage('Test') {
-            steps {
-                dir('Multiempresa') {
-                    powershell '''
-                    $env:url = "https://dcsas-backoffice.konexinnovation.com/"
-                    $env:usuario = "14321990"
-                    $env:contrasenna = "M4n1z4l3s$"
-                    $env:tipoDocumento = "Cédula de ciudadanía"
+     stage('Test') {
+         steps {
+             dir('Multiempresa') {
+                 bat '''
+                 set URL=https://dcsas-backoffice.konexinnovation.com/
+                 set USUARIO=14321990
+                 set CONTRASENNA=M4n1z4l3s$
+                 set TIPO_DOCUMENTO="Cédula de ciudadanía"
 
-                    ./gradlew clean test --tests "co.com.konex.certification.login.backoffice.runners.gestiodistribuidor.FiltrosGestDistRunner"
-                    '''
-                }
-            }
+                 gradlew clean test --tests "co.com.konex.certification.login.backoffice.runners.gestiodistribuidor.FiltrosGestDistRunner"
+                 '''
+             }
+         }
             post {
                 always {
                     junit 'Multiempresa/build/test-results/test/*.xml'
