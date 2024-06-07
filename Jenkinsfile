@@ -42,7 +42,7 @@ pipeline {
                 dir('Multiempresa') {
                     bat '''
                     echo TIPO_DOCUMENTO=%TIPO_DOCUMENTO%
-                    gradlew.bat clean test --tests "co.com.konex.certification.login.backoffice.runners.gestiodistribuidor.FiltrosGestDistRunner"
+                    ./gradlew.bat clean test --tests "co.com.konex.certification.login.backoffice.runners.gestiodistribuidor.FiltrosGestDistRunner"
                     '''
                 }
             }
