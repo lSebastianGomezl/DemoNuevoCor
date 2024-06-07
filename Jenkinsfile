@@ -1,15 +1,6 @@
 pipeline {
     agent {
         label 'principal' // Ajusta según tu agente Jenkins
-        // Asegurarse de que se utiliza el intérprete de comandos de Windows
-        // en lugar de shell
-        agent { node { label 'principal' } }
-    }
-    environment {
-        URL = "https://dcsas-backoffice.konexinnovation.com/"
-        USUARIO = "14321990"
-        CONTRASENNA = "M4n1z4l3s$"
-        TIPO_DOCUMENTO = "Cédula de ciudadanía"
     }
     stages {
         stage('Checkout') {
@@ -32,9 +23,14 @@ pipeline {
         stage('Test') {
             steps {
                 dir('Multiempresa') {
-                    bat """
-                    ./gradlew test -Durl=%URL% -Dusuario=%USUARIO% -Dcontrasenna=%CONTRASENNA% -DtipoDocumento="%TIPO_DOCUMENTO%" --tests "co.com.konex.certification.login.backoffice.runners.gestiodistribuidor.FiltrosGestDistRunner"
-                    """
+                    powershell '''
+                    $env:url = "https://dcsas-backoffice.konexinnovation.com/"
+                    $env:usuario = "14321990"
+                    $env:contrasenna = "M4n1z4l3s$"
+                    $env:tipoDocumento = "Cédula de ciudadanía"
+
+                    ./gradlew clean test --tests "co.com.konex.certification.login.backoffice.runners.gestiodistribuidor.FiltrosGestDistRunner"
+                    '''
                 }
             }
             post {
