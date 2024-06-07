@@ -30,7 +30,7 @@ pipeline {
             steps {
                 dir('Multiempresa') {
                     bat """
-                    ./gradlew test -Durl=%URL% -Dusuario=%USUARIO% -Dcontrasenna=%CONTRASENNA% -DtipoDocumento="%TIPO_DOCUMENTO%" --tests "co.com.konex.certification.login.backoffice.runners.gestiodistribuidor.FiltrosGestDistRunner"
+                    ./gradlew test -Durl=${URL} -Dusuario=${USUARIO} -Dcontrasenna=${CONTRASENNA} -DtipoDocumento="${TIPO_DOCUMENTO}" --tests "co.com.konex.certification.login.backoffice.runners.gestiodistribuidor.FiltrosGestDistRunner"
                     """
                 }
             }
