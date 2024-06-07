@@ -7,6 +7,7 @@ pipeline {
         USUARIO = '14321990'
         CONTRASENNA = 'M4n1z4l3s$'
         TIPO_DOCUMENTO = 'Cédula de ciudadanía'
+        PATH = "${env.PATH};D:\\chromedriver"  // Añade el directorio de chromedriver al PATH
     }
     stages {
         stage('Checkout') {
@@ -32,6 +33,8 @@ pipeline {
                 bat 'echo USUARIO=%USUARIO%'
                 bat 'echo CONTRASENNA=%CONTRASENNA%'
                 bat 'echo TIPO_DOCUMENTO=%TIPO_DOCUMENTO%'
+                bat 'echo PATH=%PATH%'
+                bat 'chromedriver --version'  // Verificar si ChromeDriver está accesible y su versión
             }
         }
         stage('Test') {
