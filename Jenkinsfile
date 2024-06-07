@@ -23,7 +23,7 @@ pipeline {
         stage('Test') {
             steps {
                 dir('Multiempresa') {
-                    bat './gradlew test --tests "co.com.konex.certification.login.backoffice.runners.gestiodistribuidor.FiltrosGestDistRunner"'
+                    bat './gradlew test -Durl=https://dcsas-backoffice.konexinnovation.com/ -Dusuario=14321990 -Dcontrasenna=M4n1z4l3s$ -DtipoDocumento="Cédula de ciudadanía" --tests "co.com.konex.certification.login.backoffice.runners.gestiodistribuidor.FiltrosGestDistRunner"'
                 }
             }
             post {
