@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        label 'windows' // Ajusta según tu agente Jenkins
+        label 'principal' // Ajusta según tu agente Jenkins
     }
     stages {
         stage('Checkout') {
