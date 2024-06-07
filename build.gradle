@@ -56,6 +56,9 @@ dependencies {
     implementation group: 'org.apache.poi', name: 'poi-ooxml', version: '3.17'
     compileOnly 'org.projectlombok:lombok:1.18.22' // Versión actualizada
     annotationProcessor 'org.projectlombok:lombok:1.18.22' // Versión actualizada
+    // https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-devtools-v86
+    implementation group: 'org.seleniumhq.selenium', name: 'selenium-devtools-v86', version: '4.0.0-alpha-7'
+
 
 }
 
