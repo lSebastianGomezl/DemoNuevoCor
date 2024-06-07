@@ -1,0 +1,21 @@
+{
+  "id": "%s",
+  "idGrupoEmpresarial": "%s",
+  "nit": "%s",
+  "razonSocial": "%s",
+  "idPais": "%s",
+  "idMunicipio": "%s",
+  "direccion": "%s",
+  "correo": "%s",
+  "telefono": "%s",
+  "dominio": "%s",
+  "estado": "%s",
+  "moneda": "%s",
+  "tipoPago": "%s",
+  "aplicaComercializador": "%s",
+  "aplicaDistribuidor": "%s",
+  "responsableIva": "%s",
+  "obligadoFacturar": "%s",
+  "regimenSimple": "%s",
+  "entidadEstado": "%s"
+}

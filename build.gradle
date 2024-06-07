@@ -1,0 +1,80 @@
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "net.serenity-bdd:serenity-gradle-plugin:3.2.0"
+        classpath "gradle.plugin.com.github.sherter.google-java-format:google-java-format-gradle-plugin:0.9"
+    }
+}
+
+plugins {
+    id "net.serenity-bdd.serenity-gradle-plugin" version "3.2.0"
+    id 'java'
+    id 'eclipse'
+    id 'idea'
+}
+
+defaultTasks 'clean', 'test', 'aggregate'
+
+repositories {
+    mavenCentral()
+    maven {
+        url 'https://pkgs.dev.azure.com/DEV-FormacionCH/f11a2ddb-f565-44a3-8710-e9e1472d29ee/_packaging/Choucair/maven/v1'
+    }
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+ext {
+}
+compileJava.options.encoding = "UTF-8"
+compileTestJava.options.encoding = "UTF-8"
+
+dependencies {
+    implementation "net.serenity-bdd:serenity-core:${serenityCoreVersion}",
+            "net.serenity-bdd:serenity-junit5:${serenityCoreVersion}",
+            "net.serenity-bdd:serenity-screenplay:${serenityCoreVersion}",
+            "net.serenity-bdd:serenity-ensure:${serenityCoreVersion}",
+            "net.serenity-bdd:serenity-screenplay-webdriver:${serenityCoreVersion}",
+            "org.junit.jupiter:junit-jupiter-api:${junitVersion}",
+            "org.junit.jupiter:junit-jupiter-engine:${junitVersion}",
+            //"org.assertj:assertj-core:${assertJVersion}",
+            //"ch.qos.logback:logback-classic:${logbackVersion}",
+            "io.rest-assured:rest-assured:${restAssuredVersion}",
+            "net.serenity-bdd:serenity-screenplay-rest:${restVersion}",
+            "org.json:json:${jsonVersion}"
+
+    implementation("net.serenity-bdd:serenity-cucumber:${serenityCoreVersion}")
+    implementation group: 'io.github.bonigarcia', name: 'webdrivermanager', version: '5.8.0'
+
+    implementation group: 'com.codoid.products', name: 'fillo', version: '1.21'
+    implementation group: 'org.apache.poi', name: 'poi', version: '3.17'
+    implementation group: 'org.apache.poi', name: 'poi-ooxml', version: '3.17'
+    compileOnly 'org.projectlombok:lombok:1.18.22' // Versión actualizada
+    annotationProcessor 'org.projectlombok:lombok:1.18.22' // Versión actualizada
+
+}
+
+test {
+    maxParallelForks = Runtime.runtime.availableProcessors()
+    useJUnitPlatform()
+    testLogging.showStandardStreams = true
+    systemProperties System.getProperties()
+}
+
+gradle.startParameter.continueOnFailure = true
+serenity {
+    reports = ["single-page-html"]
+
+// Specify the root package of any JUnit acceptance tests
+    testRoot = "starter"
+
+
+}
+
+//test.finalizedBy(clean)
+test.finalizedBy(aggregate)
