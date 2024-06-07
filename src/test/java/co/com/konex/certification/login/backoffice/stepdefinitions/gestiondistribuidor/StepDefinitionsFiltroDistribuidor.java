@@ -30,9 +30,7 @@ public class StepDefinitionsFiltroDistribuidor {
 
     @Y("da clic en el boton Consultar")
     public void daClicEnElBotonConsultar() {
-        OnStage.theActorInTheSpotlight().attemptsTo(
-                WaitUntil.the(ContenedorDeObjetosGestionDistribuidor.BTN_FILTRAR, isVisible()).forNoMoreThan(10).seconds(), // Espera hasta que el botón sea visible por un máximo de 10 segundos
-                SeleccionarBtnConsultar.btnConsultar());
+        OnStage.theActorInTheSpotlight().attemptsTo(SeleccionarBtnConsultar.btnConsultar());
     }
 
 
