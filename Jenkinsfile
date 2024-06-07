@@ -1,6 +1,12 @@
 pipeline {
     agent {
-        label 'principal' // Ajusta según tu agente Jenkins
+        label 'principal'
+    }
+    environment {
+        URL = 'https://dcsas-backoffice.konexinnovation.com/'
+        USUARIO = '14321990'
+        CONTRASENNA = 'M4n1z4l3s$'
+        TIPO_DOCUMENTO = 'Cédula de ciudadanía'
     }
     stages {
         stage('Checkout') {
@@ -16,27 +22,23 @@ pipeline {
         stage('Build') {
             steps {
                 dir('Multiempresa') {
-                    bat './gradlew clean build -x test'
+                    bat 'gradlew.bat clean build -x test'
                 }
             }
         }
-stage('Test') {
-    steps {
-        dir('Multiempresa') {
-            script {
-                // Configura las variables de entorno para que Gradle las lea
-                bat 'set URL=https://dcsas-backoffice.konexinnovation.com/'
-                bat 'set USUARIO=14321990'
-                bat 'set CONTRASENNA=M4n1z4l3s$'
-                bat 'set TIPO_DOCUMENTO="Cédula de ciudadanía"'
+        stage('Test') {
+            steps {
+                dir('Multiempresa') {
+                    bat """
+                    set URL=${env.URL}
+                    set USUARIO=${env.USUARIO}
+                    set CONTRASENNA=${env.CONTRASENNA}
+                    set TIPO_DOCUMENTO=${env.TIPO_DOCUMENTO}
 
-                // Ejecuta el comando Gradle con las variables de entorno configuradas
-                bat '''
-                gradlew clean test --tests "co.com.konex.certification.login.backoffice.runners.gestiodistribuidor.FiltrosGestDistRunner"
-                '''
+                    gradlew.bat clean test --tests "co.com.konex.certification.login.backoffice.runners.gestiodistribuidor.FiltrosGestDistRunner"
+                    """
+                }
             }
-        }
-    }
             post {
                 always {
                     junit 'Multiempresa/build/test-results/test/*.xml'
