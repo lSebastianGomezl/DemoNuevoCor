@@ -1,6 +1,9 @@
 pipeline {
     agent {
         label 'principal' // Ajusta según tu agente Jenkins
+        // Asegurarse de que se utiliza el intérprete de comandos de Windows
+        // en lugar de shell
+        agent { node { label 'principal' } }
     }
     environment {
         URL = "https://dcsas-backoffice.konexinnovation.com/"
@@ -30,7 +33,7 @@ pipeline {
             steps {
                 dir('Multiempresa') {
                     bat """
-                    ./gradlew clean test -Durl=%URL% -Dusuario=%USUARIO% -Dcontrasenna=%CONTRASENNA% -DtipoDocumento="%TIPO_DOCUMENTO%" --tests "co.com.konex.certification.login.backoffice.runners.gestiodistribuidor.FiltrosGestDistRunner"
+                    ./gradlew test -Durl=%URL% -Dusuario=%USUARIO% -Dcontrasenna=%CONTRASENNA% -DtipoDocumento="%TIPO_DOCUMENTO%" --tests "co.com.konex.certification.login.backoffice.runners.gestiodistribuidor.FiltrosGestDistRunner"
                     """
                 }
             }
