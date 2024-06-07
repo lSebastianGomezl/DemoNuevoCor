@@ -7,7 +7,7 @@ pipeline {
         USUARIO = '14321990'
         CONTRASENNA = 'M4n1z4l3s$'
         TIPO_DOCUMENTO = 'Cédula de ciudadanía'
-        PATH = "${env.PATH};D:\\chromedriver"  // Añade el directorio de chromedriver al PATH
+        PATH = "${env.PATH};D:\\chromedriver.exe"  // Añade el directorio de chromedriver al PATH
     }
     stages {
         stage('Checkout') {
@@ -41,6 +41,7 @@ pipeline {
             steps {
                 dir('Multiempresa') {
                     bat '''
+                    echo TIPO_DOCUMENTO=%TIPO_DOCUMENTO%
                     gradlew.bat clean test --tests "co.com.konex.certification.login.backoffice.runners.gestiodistribuidor.FiltrosGestDistRunner"
                     '''
                 }
