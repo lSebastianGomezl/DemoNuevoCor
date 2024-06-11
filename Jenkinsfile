@@ -5,8 +5,8 @@ pipeline {
 
     environment {
         // Definir variables de entorno para usarlas en el pipeline
-        //URL = "https://dcsas-backoffice.konexinnovation.com/"
-        URL = "http://localhost:8080"
+        URL = "https://dcsas-backoffice.konexinnovation.com/"
+        //URL = "http://localhost:8080"
         USUARIO = "14321990"
         CONTRASENNA = "M4n1z4l3s$"
         TIPO_DOCUMENTO = "Cédula de ciudadanía"
