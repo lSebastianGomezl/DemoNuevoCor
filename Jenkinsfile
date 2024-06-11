@@ -1,12 +1,10 @@
 pipeline {
-    agent {
-        label 'principal' // Ajusta según tu agente Jenkins
-    }
+    agent any
 
     environment {
         // Definir variables de entorno para usarlas en el pipeline
         URL = "https://dcsas-backoffice.konexinnovation.com/"
-        //URL = "http://localhost:8080"
+        // URL = "http://localhost:8080"
         USUARIO = "14321990"
         CONTRASENNA = "M4n1z4l3s$"
         TIPO_DOCUMENTO = "Cédula de ciudadanía"
@@ -29,11 +27,20 @@ pipeline {
             }
         }
 
+        stage('Set Up Environment') {
+            steps {
+                script {
+                    // Configurar las variables de entorno en Jenkins
+                    env.PATH = "${PATH};${env.PATH}"
+                }
+            }
+        }
+
         stage('Build') {
             steps {
                 dir('Multiempresa') {
                     // Compilar el proyecto utilizando Gradle, excluyendo las pruebas
-                    bat './gradlew clean build -x test'
+                    bat './gradlew.bat clean build -x test'
                 }
             }
         }
@@ -47,7 +54,7 @@ pipeline {
                         set USUARIO=%USUARIO%
                         set CONTRASENNA=%CONTRASENNA%
                         set TIPO_DOCUMENTO=%TIPO_DOCUMENTO%
-                        ./gradlew test --tests "co.com.konex.certification.login.backoffice.runners.gestiodistribuidor.FiltrosGestDistRunner"
+                        ./gradlew.bat test --tests "co.com.konex.certification.login.backoffice.runners.gestiodistribuidor.FiltrosGestDistRunner"
                     """
                 }
             }
