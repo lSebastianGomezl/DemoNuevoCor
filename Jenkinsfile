@@ -28,16 +28,6 @@ pipeline {
                 bat 'nslookup myip.opendns.com resolver1.opendns.com'
             }
         }
-
-        stage('Set Up Environment') {
-            steps {
-                script {
-                    // Configurar las variables de entorno en Jenkins
-                    env.PATH = "${PATH};${env.PATH}"
-                }
-            }
-        }
-
         stage('Build') {
             steps {
                 dir('Multiempresa') {
