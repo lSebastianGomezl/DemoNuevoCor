@@ -1,5 +1,7 @@
 pipeline {
-    agent any
+    agent{
+        label 'principal'
+    }
 
     environment {
         // Definir variables de entorno para usarlas en el pipeline
