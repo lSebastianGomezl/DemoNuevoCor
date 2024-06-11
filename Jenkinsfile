@@ -50,10 +50,6 @@ pipeline {
                 dir('Multiempresa') {
                     // Establecer variables de entorno y ejecutar las pruebas específicas utilizando Gradle
                     bat """
-                        set url=%url%
-                        set usuario=%usuario%
-                        set contrasenna=%contrasenna%
-                        set tipoDocumento=%tipoDocumento%
                         ./gradlew.bat test --tests "co.com.konex.certification.login.backoffice.runners.gestiodistribuidor.FiltrosGestDistRunner"
                     """
                 }
