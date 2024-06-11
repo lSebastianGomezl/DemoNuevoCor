@@ -6,7 +6,7 @@ pipeline {
         URL = "https://dcsas-backoffice.konexinnovation.com/"
         // URL = "http://localhost:8080"
         USUARIO = "14321990"
-        CONTRASENNA = "M4n1z4l3s$"
+        CONTRASENNA = "M4n1z4l3s$$"
         TIPO_DOCUMENTO = "Cédula de ciudadanía"
         JAVA_HOME = "C:\\Program Files\\Java\\jdk1.8.0_45"
         PATH = "C:\\Users\\sebastian.gomez\\Documents\\Nuevo cor\\pagatodo-automatizacion-front-backoffices-master\\Multiempresa\\chromedriver.exe"
