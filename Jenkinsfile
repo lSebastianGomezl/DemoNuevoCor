@@ -3,11 +3,11 @@ pipeline {
 
     environment {
         // Definir variables de entorno para usarlas en el pipeline
-        URL = "https://dcsas-backoffice.konexinnovation.com/"
+         url= "https://dcsas-backoffice.konexinnovation.com/"
         // URL = "http://localhost:8080"
-        USUARIO = "14321990"
-        CONTRASENNA = 'M4n1z4l3s$'
-        TIPO_DOCUMENTO = "Cédula de ciudadanía"
+        usuario = "14321990"
+        contrasenna = 'M4n1z4l3s$'
+        tipoDocumento = "Cédula de ciudadanía"
         JAVA_HOME = "C:\\Program Files\\Java\\jdk1.8.0_45"
         PATH = "C:\\Users\\sebastian.gomez\\Documents\\Nuevo cor\\pagatodo-automatizacion-front-backoffices-master\\Multiempresa\\chromedriver.exe"
     }
@@ -50,10 +50,10 @@ pipeline {
                 dir('Multiempresa') {
                     // Establecer variables de entorno y ejecutar las pruebas específicas utilizando Gradle
                     bat """
-                        set URL=%URL%
-                        set USUARIO=%USUARIO%
-                        set CONTRASENNA=%CONTRASENNA%
-                        set TIPO_DOCUMENTO=%TIPO_DOCUMENTO%
+                        set url=%url%
+                        set usuario=%usuario%
+                        set contrasenna=%contrasenna%
+                        set tipoDocumento=%tipoDocumento%
                         ./gradlew.bat test --tests "co.com.konex.certification.login.backoffice.runners.gestiodistribuidor.FiltrosGestDistRunner"
                     """
                 }
