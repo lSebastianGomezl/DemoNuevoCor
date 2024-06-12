@@ -14,14 +14,6 @@ pipeline {
         PATH = "C:\\Users\\sebastian.gomez\\Documents\\Nuevo cor\\pagatodo-automatizacion-front-backoffices-master\\Multiempresa\\chromedriver.exe"
     }
 
-    stages {
-        stage('Print PATH and Verify CMD Access') {
-            steps {
-                bat 'echo %PATH%'
-                bat 'echo CMD is accessible'
-            }
-        }
-
         stage('Checkout') {
             steps {
                 // Obtener el código fuente del repositorio configurado
