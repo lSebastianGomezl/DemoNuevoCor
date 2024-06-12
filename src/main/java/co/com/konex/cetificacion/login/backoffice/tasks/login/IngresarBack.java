@@ -11,6 +11,10 @@ import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actions.Enter;
 import net.serenitybdd.screenplay.waits.WaitUntil;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
+
 import static co.com.konex.cetificacion.login.backoffice.userinterfaces.ContenedorDeObjetosGestionDistribuidor.ALERTA_CREACION_EXITOSA;
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isClickable;
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isNotVisible;
@@ -27,11 +31,28 @@ public class IngresarBack implements Task {
         return Tasks.instrumented(IngresarBack.class, tablaUsuarios);
     }
 
+    private static Properties loadProperties(String filePath) {
+        Properties properties = new Properties();
+        try (InputStream input = IngresarBack.class.getClassLoader().getResourceAsStream(filePath)) {
+            if (input == null) {
+                System.out.println("Sorry, unable to find " + filePath);
+                return properties;
+            }
+
+            properties.load(input);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return properties;
+    }
+
     @Override
     public <T extends Actor> void performAs(T actor) {
-        String documentType = System.getenv(tablaUsuarios.getTipoDocumento());
-        String user = System.getenv(tablaUsuarios.getUsuario());
-        String password = System.getenv(tablaUsuarios.getContrasenna());
+        Properties properties = new Properties();
+
+        String documentType = properties.getProperty("tipoDocumento");
+        String user = properties.getProperty("usuario");
+        String password = properties.getProperty("contrasenna");
 
         actor.attemptsTo(
                 Click.on(ContenedorDeObjetosLogin.TIPO_DOCUMENTO),
