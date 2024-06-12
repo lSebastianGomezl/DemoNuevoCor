@@ -13,6 +13,12 @@ pipeline {
         JAVA_HOME = "C:\\Program Files\\Java\\jdk1.8.0_45"
         PATH = "C:\\Users\\sebastian.gomez\\Documents\\Nuevo cor\\pagatodo-automatizacion-front-backoffices-master\\Multiempresa\\chromedriver.exe"
     }
+   stages {
+        stage('Print PATH') {
+            steps {
+                bat 'echo %PATH%'
+            }
+        }
 
     stages {
         stage('Checkout') {
