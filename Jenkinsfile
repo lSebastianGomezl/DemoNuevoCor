@@ -1,6 +1,6 @@
 pipeline {
     agent{
-        label 'Agt demoCor'
+        label 'Windows'
     }
 
     environment {
