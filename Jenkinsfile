@@ -14,6 +14,7 @@ pipeline {
         PATH = "C:\\Users\\sebastian.gomez\\Documents\\Nuevo cor\\pagatodo-automatizacion-front-backoffices-master\\Multiempresa\\chromedriver.exe"
     }
 
+    stages {
         stage('Checkout') {
             steps {
                 // Obtener el código fuente del repositorio configurado
