@@ -29,9 +29,9 @@ public class IngresarBack implements Task {
 
     @Override
     public <T extends Actor> void performAs(T actor) {
-        String documentType = "Cédula de ciudadanía";
-        String user = "14321990";
-        String password = "M4n1z4l3s$";
+        String documentType = System.getenv(tablaUsuarios.getTipoDocumento());
+        String user = System.getenv(tablaUsuarios.getUsuario());
+        String password = System.getenv(tablaUsuarios.getContrasenna());
 
         actor.attemptsTo(
                 Click.on(ContenedorDeObjetosLogin.TIPO_DOCUMENTO),
