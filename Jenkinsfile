@@ -1,11 +1,11 @@
 pipeline {
-    agent{
+    agent {
         label 'Windows'
     }
 
     environment {
         // Definir variables de entorno para usarlas en el pipeline
-         BASE_URL= "https://dcsas-backoffice.konexinnovation.com/"
+        BASE_URL = "https://dcsas-backoffice.konexinnovation.com/"
         // URL = "http://localhost:8080"
         USUARIO = "14321990"
         CONTRASENNA = 'M4n1z4l3s$'
@@ -13,6 +13,7 @@ pipeline {
         JAVA_HOME = "C:\\Program Files\\Java\\jdk1.8.0_45"
         PATH = "C:\\Users\\sebastian.gomez\\Documents\\Nuevo cor\\pagatodo-automatizacion-front-backoffices-master\\Multiempresa\\chromedriver.exe"
     }
+
     stages {
         stage('Print PATH and Verify CMD Access') {
             steps {
@@ -21,7 +22,6 @@ pipeline {
             }
         }
 
-    stages {
         stage('Checkout') {
             steps {
                 // Obtener el código fuente del repositorio configurado
@@ -35,6 +35,7 @@ pipeline {
                 bat 'nslookup myip.opendns.com resolver1.opendns.com'
             }
         }
+
         stage('Build') {
             steps {
                 dir('Multiempresa') {
