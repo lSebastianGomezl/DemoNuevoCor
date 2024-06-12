@@ -9,7 +9,7 @@ public class PaginaBackoffice extends PageObject {
 
     public PaginaBackoffice() {
         super();
-        String url = System.getenv("BASE_URL");
+        String url = System.getenv("url");
         setDefaultBaseUrl(url);
         System.out.println(url);
     }
