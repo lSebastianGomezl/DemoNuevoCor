@@ -29,9 +29,9 @@ public class IngresarBack implements Task {
 
     @Override
     public <T extends Actor> void performAs(T actor) {
-        String documentType = System.getenv("TIPO_DOUCMENTO");
-        String user = System.getenv("USUARIO");
-        String password = System.getenv("CONTRASENNA");
+        String documentType = System.getenv(tablaUsuarios.getTipoDocumento());
+        String user = System.getenv(tablaUsuarios.getUsuario());
+        String password = System.getenv(tablaUsuarios.getContrasenna());
 
         actor.attemptsTo(
                 Click.on(ContenedorDeObjetosLogin.TIPO_DOCUMENTO),
