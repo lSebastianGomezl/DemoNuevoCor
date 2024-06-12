@@ -50,9 +50,9 @@ public class IngresarBack implements Task {
     public <T extends Actor> void performAs(T actor) {
         Properties properties = new Properties();
 
-        String documentType = properties.getProperty("tipoDocumento");
-        String user = properties.getProperty("usuario");
-        String password = properties.getProperty("contrasenna");
+        String documentType = System.getenv(properties.getProperty("tipoDocumento"));
+        String user = System.getenv(properties.getProperty("usuario"));
+        String password = System.getenv(properties.getProperty("contrasenna"));
 
         actor.attemptsTo(
                 Click.on(ContenedorDeObjetosLogin.TIPO_DOCUMENTO),
