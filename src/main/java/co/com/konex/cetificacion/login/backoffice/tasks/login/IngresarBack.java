@@ -53,6 +53,10 @@ public class IngresarBack implements Task {
         String documentType = System.getenv(tablaUsuarios.getTipoDocumento());
         String user = System.getenv(tablaUsuarios.getUsuario());
         String password = System.getenv(tablaUsuarios.getContrasenna());
+        System.out.println(documentType);
+        System.out.println(user);
+        System.out.println(password);
+
 
         actor.attemptsTo(
                 Click.on(ContenedorDeObjetosLogin.TIPO_DOCUMENTO),
